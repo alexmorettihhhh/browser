@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets 
     WebEngineWidgets 
     Network
+    Sql
 )
 
 # Добавляем пути для поиска заголовочных файлов Qt
@@ -22,6 +23,14 @@ include_directories(${Qt6Core_INCLUDE_DIRS}
     ${Qt6Widgets_INCLUDE_DIRS}
     ${Qt6WebEngineWidgets_INCLUDE_DIRS}
     ${Qt6Network_INCLUDE_DIRS}
+    ${Qt6Sql_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+# Собираем список исходных файлов
+file(GLOB_RECURSE SOURCES
+    "src/*.cpp"
+    "src/*.h"
 )
 
 # Добавляем ресурсы
@@ -31,20 +40,7 @@ qt_add_resources(RESOURCES
 
 # Добавляем исполняемый файл
 add_executable(browser
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    settings.cpp
-    settings.h
-    types.h
-    downloadmanager.cpp
-    downloadmanager.h
-    downloadsdialog.cpp
-    downloadsdialog.h
-    readermode.cpp
-    readermode.h
-    adblocker.cpp
-    adblocker.h
+    ${SOURCES}
     ${RESOURCES}
 )
 
@@ -55,4 +51,17 @@ target_link_libraries(browser PRIVATE
     Qt6::Widgets
     Qt6::WebEngineWidgets
     Qt6::Network
-) 
+    Qt6::Sql
+)
+
+# Копируем ресурсы в директорию сборки
+add_custom_command(TARGET browser POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:browser>/resources
+)
+
+# Добавляем тесты
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif() 

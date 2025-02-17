@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RCC>
     <qresource prefix="/">
-        <file>styles.qss</file>
-        <file>icons/back.png</file>
-        <file>icons/forward.png</file>
-        <file>icons/reload.png</file>
-        <file>icons/home.png</file>
-        <file>icons/bookmark.png</file>
-        <file>icons/history.png</file>
-        <file>icons/settings.png</file>
-        <file>icons/search.png</file>
-        <file>icons/zoom_in.png</file>
-        <file>icons/zoom_out.png</file>
-        <file>icons/down_arrow.png</file>
-        <file>icons/reader.png</file>
-        <file>adblock/rules.txt</file>
+        <file>resources/styles/styles.qss</file>
+        <file>resources/icons/back.png</file>
+        <file>resources/icons/forward.png</file>
+        <file>resources/icons/reload.png</file>
+        <file>resources/icons/home.png</file>
+        <file>resources/icons/bookmark.png</file>
+        <file>resources/icons/history.png</file>
+        <file>resources/icons/settings.png</file>
+        <file>resources/icons/search.png</file>
+        <file>resources/icons/zoom_in.png</file>
+        <file>resources/icons/zoom_out.png</file>
+        <file>resources/icons/down_arrow.png</file>
+        <file>resources/icons/reader.png</file>
+        <file>resources/adblock/rules.txt</file>
     </qresource>
 </RCC> 
