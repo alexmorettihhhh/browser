@@ -161,18 +161,9 @@ browser/
 
 ## Авторы
 
-- Основной разработчик: [Ваше имя]
+- Основной разработчик:  https://github.com/alexmorettihhhh
 - Сообщество Qt
 
-## Благодарности
-
-- Qt Company за Qt Framework
-- Проекту Chromium
-- Сообществу EasyList
-- Всем контрибьюторам
 
 ## Контакты
-
-- GitHub Issues: [ссылка на issues]
-- Email: [ваш email]
-- Telegram: [ссылка на группу] 
+https://github.com/alexmorettihhhh
