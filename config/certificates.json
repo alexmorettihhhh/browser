@@ -1,0 +1,13 @@
+{
+    "certificates": [],
+    "trustedDomains": {},
+    "settings": {
+        "expiryWarningDays": 30,
+        "autoUpdateEnabled": true,
+        "validateOnStartup": true
+    },
+    "metadata": {
+        "lastUpdate": null,
+        "lastValidation": null
+    }
+} 

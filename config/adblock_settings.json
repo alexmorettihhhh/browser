@@ -1,0 +1,27 @@
+{
+    "enabled": true,
+    "customRules": [],
+    "allowedDomains": [],
+    "blockedDomains": [],
+    "filterLists": [
+        {
+            "name": "EasyList",
+            "url": "https://easylist.to/easylist/easylist.txt",
+            "enabled": true,
+            "lastUpdate": null
+        },
+        {
+            "name": "EasyPrivacy",
+            "url": "https://easylist.to/easylist/easyprivacy.txt",
+            "enabled": true,
+            "lastUpdate": null
+        }
+    ],
+    "settings": {
+        "autoUpdate": true,
+        "updateInterval": 86400,
+        "cosmetic": true,
+        "javascript": true,
+        "thirdParty": true
+    }
+} 

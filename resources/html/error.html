@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        :root {
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --error-color: #d32f2f;
+            --button-color: #0078d7;
+            --button-hover-color: #1e88e5;
+            --border-color: #e0e0e0;
+            --card-background: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1e1e1e;
+                --text-color: #ffffff;
+                --error-color: #ef5350;
+                --button-color: #0078d7;
+                --button-hover-color: #1e88e5;
+                --border-color: #3d3d3d;
+                --card-background: #2d2d2d;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-background);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .error-icon {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 24px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .error-code {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--error-color);
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 4px var(--shadow-color);
+        }
+
+        .error-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .error-message {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .error-details {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            padding: 16px;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            word-break: break-all;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: var(--button-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .button.secondary:hover {
+            background-color: var(--background-color);
+        }
+
+        .suggestions {
+            margin-top: 32px;
+            text-align: left;
+            background-color: var(--card-background);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .suggestions h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestions h3::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .suggestions li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            color: var(--text-color);
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .suggestions li:hover {
+            opacity: 1;
+        }
+
+        .suggestions li::before {
+            content: "•";
+            margin-right: 8px;
+            color: var(--error-color);
+        }
+
+        .technical-details {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--text-color);
+            opacity: 0.8;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .technical-details details {
+            margin-top: 8px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .technical-details summary {
+            cursor: pointer;
+            user-select: none;
+            padding: 12px;
+            background-color: var(--background-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .technical-details summary:hover {
+            background-color: var(--card-background);
+        }
+
+        .technical-details pre {
+            margin: 0;
+            padding: 16px;
+            background-color: var(--background-color);
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+        }
+
+        .error-actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .error-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .error-action:hover {
+            background-color: var(--background-color);
+            transform: translateY(-2px);
+        }
+
+        .error-action img {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .error-container {
+                padding: 20px;
+            }
+
+            .error-code {
+                font-size: 36px;
+            }
+
+            .error-title {
+                font-size: 20px;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        .loading {
+            position: relative;
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+            margin-bottom: 24px;
+        }
+
+        .loading div {
+            position: absolute;
+            border: 4px solid var(--error-color);
+            opacity: 1;
+            border-radius: 50%;
+            animation: loading 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+
+        .loading div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+        @keyframes loading {
+            0% {
+                top: 28px;
+                left: 28px;
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                top: -1px;
+                left: -1px;
+                width: 58px;
+                height: 58px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="loading">
+            <div></div>
+            <div></div>
+        </div>
+        <img src="qrc:/resources/icons/error.png" alt="Error" class="error-icon" style="display: none;">
+        <div class="error-code">{{ERROR_CODE}}</div>
+        <h1 class="error-title">{{ERROR_TITLE}}</h1>
+        <p class="error-message">{{ERROR_MESSAGE}}</p>
+        
+        <div class="error-details">
+            {{ERROR_URL}}
+        </div>
+
+        <div class="error-actions">
+            <div class="error-action" onclick="checkConnection()">
+                <img src="qrc:/resources/icons/network.png" alt="Check Connection">
+                <span>Check Connection</span>
+            </div>
+            <div class="error-action" onclick="clearCache()">
+                <img src="qrc:/resources/icons/clear.png" alt="Clear Cache">
+                <span>Clear Cache</span>
+            </div>
+            <div class="error-action" onclick="reportIssue()">
+                <img src="qrc:/resources/icons/report.png" alt="Report Issue">
+                <span>Report Issue</span>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="button" onclick="window.history.back()">Go Back</button>
+            <button class="button secondary" onclick="window.location.reload()">Try Again</button>
+        </div>
+
+        <div class="suggestions">
+            <h3>Suggestions</h3>
+            <ul>
+                <li>Check your internet connection</li>
+                <li>Verify the website address is correct</li>
+                <li>Clear your browser cache and cookies</li>
+                <li>Check if the website is accessible from other devices</li>
+                <li>Try accessing the website later</li>
+                <li>Contact your network administrator if the problem persists</li>
+            </ul>
+        </div>
+
+        <div class="technical-details">
+            <details>
+                <summary>Technical Details</summary>
+                <pre>
+Error Code: {{ERROR_CODE}}
+Time: {{ERROR_TIME}}
+URL: {{ERROR_URL}}
+Browser: {{BROWSER_INFO}}
+Platform: {{PLATFORM_INFO}}
+Additional Info: {{ERROR_DETAILS}}
+                </pre>
+            </details>
+        </div>
+    </div>
+
+    <script>
+        // Замена плейсхолдеров реальными данными
+        function replaceErrorData(data) {
+            document.querySelector('.error-code').textContent = data.code || 'Unknown Error';
+            document.querySelector('.error-title').textContent = data.title || 'Something went wrong';
+            document.querySelector('.error-message').textContent = data.message || 'An error occurred while loading the page.';
+            document.querySelector('.error-details').textContent = data.url || '';
+            
+            const technicalDetails = document.querySelector('.technical-details pre');
+            technicalDetails.textContent = `Error Code: ${data.code || 'Unknown'}
+Time: ${new Date().toISOString()}
+URL: ${data.url || 'N/A'}
+Browser: ${data.browserInfo || 'N/A'}
+Platform: ${data.platformInfo || 'N/A'}
+Additional Info: ${data.details || 'No additional information available'}`;
+
+            // Показываем иконку ошибки после загрузки
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.error-icon').style.display = 'block';
+            }, 1000);
+        }
+
+        // Функции для действий с ошибками
+        function checkConnection() {
+            // Этот код будет заменен на реальную проверку соединения из C++
+            console.log('Checking connection...');
+        }
+
+        function clearCache() {
+            // Этот код будет заменен на реальную очистку кэша из C++
+            console.log('Clearing cache...');
+        }
+
+        function reportIssue() {
+            // Этот код будет заменен на реальную отправку отчета из C++
+            console.log('Reporting issue...');
+        }
+
+        // Обработка кнопок
+        document.querySelector('.button').addEventListener('click', function() {
+            window.history.back();
+        });
+
+        document.querySelector('.button.secondary').addEventListener('click', function() {
+            window.location.reload();
+        });
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Этот код будет заменен на реальные данные из C++
+            const errorData = {
+                code: '404',
+                title: 'Page Not Found',
+                message: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
+                url: window.location.href,
+                browserInfo: navigator.userAgent,
+                platformInfo: navigator.platform,
+                details: 'Server returned 404 Not Found response'
+            };
+            replaceErrorData(errorData);
+        });
+    </script>
+</body>
+</html> 

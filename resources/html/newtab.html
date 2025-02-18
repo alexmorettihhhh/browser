@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <style>
+        :root {
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --hover-color: #f0f0f0;
+            --border-color: #e0e0e0;
+            --accent-color: #0078d7;
+            --card-background: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1e1e1e;
+                --text-color: #ffffff;
+                --hover-color: #2d2d2d;
+                --border-color: #3d3d3d;
+                --accent-color: #0078d7;
+                --card-background: #2d2d2d;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .weather-widget {
+            background-color: var(--card-background);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 584px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 45px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .quick-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .quick-link:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        .quick-link img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            border-radius: 50%;
+            padding: 8px;
+            background-color: var(--hover-color);
+        }
+
+        .quick-link span {
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+
+        .most-visited {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .most-visited h2 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .site-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .site-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: var(--card-background);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            position: relative;
+        }
+
+        .site-tile:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        .site-tile img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .site-tile span {
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+
+        .site-tile .remove-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            color: var(--text-color);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .site-tile:hover .remove-button {
+            display: flex;
+        }
+
+        .customize-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--card-background);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .customize-button:hover {
+            background-color: var(--hover-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .news-feed {
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .news-feed h2 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 15px;
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .news-source {
+            font-size: 12px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .context-menu {
+            position: fixed;
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 5px 0;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: none;
+            z-index: 1000;
+        }
+
+        .context-menu-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .context-menu-item:hover {
+            background-color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="weather-widget">
+            <span id="weather-info">Loading weather...</span>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <img src="qrc:/resources/icons/search.png" alt="Search" class="search-icon">
+            <input type="text" class="search-input" placeholder="Search or enter address" autofocus>
+        </div>
+    </div>
+
+    <div class="quick-links">
+        <a href="#" class="quick-link" data-action="bookmarks">
+            <img src="qrc:/resources/icons/bookmark.png" alt="Bookmarks">
+            <span>Bookmarks</span>
+        </a>
+        <a href="#" class="quick-link" data-action="history">
+            <img src="qrc:/resources/icons/history.png" alt="History">
+            <span>History</span>
+        </a>
+        <a href="#" class="quick-link" data-action="downloads">
+            <img src="qrc:/resources/icons/downloads.png" alt="Downloads">
+            <span>Downloads</span>
+        </a>
+        <a href="#" class="quick-link" data-action="extensions">
+            <img src="qrc:/resources/icons/extensions.png" alt="Extensions">
+            <span>Extensions</span>
+        </a>
+        <a href="#" class="quick-link" data-action="settings">
+            <img src="qrc:/resources/icons/settings.png" alt="Settings">
+            <span>Settings</span>
+        </a>
+    </div>
+
+    <div class="most-visited">
+        <h2>Most Visited</h2>
+        <div class="site-grid" id="most-visited-sites">
+            <!-- Будет заполнено динамически -->
+        </div>
+    </div>
+
+    <div class="news-feed">
+        <h2>Top News</h2>
+        <div class="news-grid" id="news-container">
+            <!-- Будет заполнено динамически -->
+        </div>
+    </div>
+
+    <button class="customize-button">Customize</button>
+
+    <div class="context-menu" id="context-menu">
+        <div class="context-menu-item" data-action="edit">Edit</div>
+        <div class="context-menu-item" data-action="remove">Remove</div>
+        <div class="context-menu-item" data-action="open-new-tab">Open in New Tab</div>
+        <div class="context-menu-item" data-action="open-incognito">Open in Incognito</div>
+    </div>
+
+    <script>
+        // Обработка поискового запроса
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    if (query.match(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/)) {
+                        window.location.href = query.startsWith('http') ? query : `http://${query}`;
+                    } else {
+                        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            }
+        });
+
+        // Загрузка часто посещаемых сайтов
+        function loadMostVisitedSites() {
+            const siteGrid = document.getElementById('most-visited-sites');
+            // Этот код будет заменен на реальную загрузку данных из C++
+            const dummyData = [
+                { url: 'https://www.google.com', title: 'Google', icon: 'https://www.google.com/favicon.ico' },
+                { url: 'https://github.com', title: 'GitHub', icon: 'https://github.com/favicon.ico' },
+                { url: 'https://www.youtube.com', title: 'YouTube', icon: 'https://www.youtube.com/favicon.ico' }
+            ];
+
+            siteGrid.innerHTML = dummyData.map(site => `
+                <a href="${site.url}" class="site-tile">
+                    <div class="remove-button">×</div>
+                    <img src="${site.icon}" alt="${site.title}">
+                    <span>${site.title}</span>
+                </a>
+            `).join('');
+        }
+
+        // Загрузка новостей
+        function loadNews() {
+            const newsContainer = document.getElementById('news-container');
+            // Этот код будет заменен на реальную загрузку данных из C++
+            const dummyNews = [
+                {
+                    title: 'Sample News Title 1',
+                    source: 'News Source 1',
+                    image: 'path/to/image1.jpg'
+                },
+                {
+                    title: 'Sample News Title 2',
+                    source: 'News Source 2',
+                    image: 'path/to/image2.jpg'
+                }
+            ];
+
+            newsContainer.innerHTML = dummyNews.map(news => `
+                <div class="news-card">
+                    <img src="${news.image}" alt="${news.title}">
+                    <div class="news-content">
+                        <div class="news-title">${news.title}</div>
+                        <div class="news-source">${news.source}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Загрузка погоды
+        function loadWeather() {
+            const weatherInfo = document.getElementById('weather-info');
+            // Этот код будет заменен на реальную загрузку данных из C++
+            weatherInfo.textContent = '22°C, Sunny';
+        }
+
+        // Контекстное меню
+        let contextMenuTarget = null;
+
+        document.addEventListener('contextmenu', function(e) {
+            const tile = e.target.closest('.site-tile');
+            if (tile) {
+                e.preventDefault();
+                contextMenuTarget = tile;
+                const menu = document.getElementById('context-menu');
+                menu.style.display = 'block';
+                menu.style.left = e.pageX + 'px';
+                menu.style.top = e.pageY + 'px';
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('context-menu');
+            const menuItem = e.target.closest('.context-menu-item');
+            
+            if (menuItem && contextMenuTarget) {
+                const action = menuItem.dataset.action;
+                // Этот код будет заменен на реальные действия из C++
+                console.log(`Action ${action} for ${contextMenuTarget.href}`);
+                menu.style.display = 'none';
+                contextMenuTarget = null;
+            } else if (!e.target.closest('#context-menu')) {
+                menu.style.display = 'none';
+                contextMenuTarget = null;
+            }
+        });
+
+        // Обработка кнопки настройки
+        document.querySelector('.customize-button').addEventListener('click', function() {
+            // Этот код будет заменен на реальное открытие диалога настроек
+            console.log('Open customize dialog');
+        });
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMostVisitedSites();
+            loadNews();
+            loadWeather();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC>
+    <qresource prefix="/test">
+        <!-- Тестовые сертификаты -->
+        <file>certs/test_cert.pem</file>
+        <file>certs/test_key.pem</file>
+        <file>certs/test_chain.pem</file>
+        
+        <!-- Тестовые данные для режима чтения -->
+        <file>reader/test_article.html</file>
+        <file>reader/test_styles.css</file>
+        
+        <!-- Тестовые правила блокировки рекламы -->
+        <file>adblock/test_rules.txt</file>
+        <file>adblock/test_whitelist.txt</file>
+        
+        <!-- Тестовые данные для синхронизации -->
+        <file>sync/test_bookmarks.json</file>
+        <file>sync/test_history.json</file>
+        
+        <!-- Тестовые настройки -->
+        <file>settings/test_settings.json</file>
+        <file>settings/test_permissions.json</file>
+    </qresource>
+</RCC> 

@@ -1,0 +1,38 @@
+{
+    "general": {
+        "homepage": "https://www.google.com",
+        "startupBehavior": "restore",
+        "downloadPath": "",
+        "searchEngine": "google",
+        "newTabPage": "default"
+    },
+    "appearance": {
+        "theme": "system",
+        "zoomLevel": 1.0,
+        "showBookmarksBar": true,
+        "showStatusBar": true,
+        "showToolbar": true
+    },
+    "performance": {
+        "hardwareAcceleration": true,
+        "processModel": "balanced",
+        "diskCache": true,
+        "memoryCache": true
+    },
+    "privacy": {
+        "clearOnExit": false,
+        "clearTypes": [],
+        "incognitoEnabled": true
+    },
+    "extensions": {
+        "enabled": true,
+        "allowFileAccess": false,
+        "allowedOrigins": []
+    },
+    "sync": {
+        "enabled": false,
+        "account": "",
+        "devices": [],
+        "lastSync": null
+    }
+} 

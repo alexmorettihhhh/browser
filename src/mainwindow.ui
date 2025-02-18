@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Brouser</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QToolBar" name="mainToolBar">
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <addaction name="actionBack"/>
+      <addaction name="actionForward"/>
+      <addaction name="actionReload"/>
+      <addaction name="actionStop"/>
+      <addaction name="actionHome"/>
+      <addaction name="separator"/>
+      <addaction name="actionBookmark"/>
+      <addaction name="actionHistory"/>
+      <addaction name="actionDownloads"/>
+      <addaction name="separator"/>
+      <addaction name="actionSettings"/>
+      <addaction name="actionExtensions"/>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="addressBarWidget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QLineEdit" name="addressBar">
+         <property name="placeholderText">
+          <string>Search or enter address</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="securityButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources.qrc">
+           <normaloff>:/resources/icons/secure.png</normaloff>:/resources/icons/secure.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolBar" name="bookmarksToolBar">
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="TabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNewTab"/>
+    <addaction name="actionNewWindow"/>
+    <addaction name="actionNewPrivateWindow"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpenFile"/>
+    <addaction name="actionSavePage"/>
+    <addaction name="separator"/>
+    <addaction name="actionPrint"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionFind"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectAll"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
+    <addaction name="actionResetZoom"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullScreen"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowBookmarksBar"/>
+    <addaction name="actionShowDownloadsBar"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeveloperTools"/>
+   </widget>
+   <widget class="QMenu" name="menuHistory">
+    <property name="title">
+     <string>History</string>
+    </property>
+    <addaction name="actionShowHistory"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearHistory"/>
+   </widget>
+   <widget class="QMenu" name="menuBookmarks">
+    <property name="title">
+     <string>Bookmarks</string>
+    </property>
+    <addaction name="actionShowBookmarks"/>
+    <addaction name="actionAddBookmark"/>
+    <addaction name="separator"/>
+    <addaction name="actionImportBookmarks"/>
+    <addaction name="actionExportBookmarks"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionExtensions"/>
+    <addaction name="actionWebDeveloper"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearBrowsingData"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionReportIssue"/>
+    <addaction name="separator"/>
+    <addaction name="actionCheckForUpdates"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHistory"/>
+   <addaction name="menuBookmarks"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionBack">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/back.png</normaloff>:/resources/icons/back.png</iconset>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Left</string>
+   </property>
+  </action>
+  <action name="actionForward">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/forward.png</normaloff>:/resources/icons/forward.png</iconset>
+   </property>
+   <property name="text">
+    <string>Forward</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Right</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/reload.png</normaloff>:/resources/icons/reload.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/stop.png</normaloff>:/resources/icons/stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/home.png</normaloff>:/resources/icons/home.png</iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Home</string>
+   </property>
+  </action>
+  <action name="actionBookmark">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/bookmark.png</normaloff>:/resources/icons/bookmark.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bookmark</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/history.png</normaloff>:/resources/icons/history.png</iconset>
+   </property>
+   <property name="text">
+    <string>History</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionDownloads">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/downloads.png</normaloff>:/resources/icons/downloads.png</iconset>
+   </property>
+   <property name="text">
+    <string>Downloads</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/settings.png</normaloff>:/resources/icons/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionExtensions">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/resources/icons/extensions.png</normaloff>:/resources/icons/extensions.png</iconset>
+   </property>
+   <property name="text">
+    <string>Extensions</string>
+   </property>
+  </action>
+  <action name="actionNewTab">
+   <property name="text">
+    <string>New Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionNewWindow">
+   <property name="text">
+    <string>New Window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionNewPrivateWindow">
+   <property name="text">
+    <string>New Private Window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+  </action>
+  <action name="actionOpenFile">
+   <property name="text">
+    <string>Open File...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSavePage">
+   <property name="text">
+    <string>Save Page As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="text">
+    <string>Print...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="text">
+    <string>Find...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionSelectAll">
+   <property name="text">
+    <string>Select All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionResetZoom">
+   <property name="text">
+    <string>Reset Zoom</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="text">
+    <string>Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+  </action>
+  <action name="actionShowBookmarksBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Bookmarks Bar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
+   </property>
+  </action>
+  <action name="actionShowDownloadsBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Downloads Bar</string>
+   </property>
+  </action>
+  <action name="actionDeveloperTools">
+   <property name="text">
+    <string>Developer Tools</string>
+   </property>
+   <property name="shortcut">
+    <string>F12</string>
+   </property>
+  </action>
+  <action name="actionShowHistory">
+   <property name="text">
+    <string>Show History</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionClearHistory">
+   <property name="text">
+    <string>Clear History...</string>
+   </property>
+  </action>
+  <action name="actionShowBookmarks">
+   <property name="text">
+    <string>Show Bookmarks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionAddBookmark">
+   <property name="text">
+    <string>Add Bookmark...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionImportBookmarks">
+   <property name="text">
+    <string>Import Bookmarks...</string>
+   </property>
+  </action>
+  <action name="actionExportBookmarks">
+   <property name="text">
+    <string>Export Bookmarks...</string>
+   </property>
+  </action>
+  <action name="actionWebDeveloper">
+   <property name="text">
+    <string>Web Developer</string>
+   </property>
+  </action>
+  <action name="actionClearBrowsingData">
+   <property name="text">
+    <string>Clear Browsing Data...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Del</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About Brouser</string>
+   </property>
+  </action>
+  <action name="actionReportIssue">
+   <property name="text">
+    <string>Report Issue...</string>
+   </property>
+  </action>
+  <action name="actionCheckForUpdates">
+   <property name="text">
+    <string>Check for Updates...</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>tabwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui> 

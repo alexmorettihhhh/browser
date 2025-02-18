@@ -1,0 +1,86 @@
+{
+    "default": "google",
+    "engines": {
+        "google": {
+            "name": "Google",
+            "url": "https://www.google.com/search?q={searchTerms}",
+            "suggestUrl": "https://suggestqueries.google.com/complete/search?client=chrome&q={searchTerms}",
+            "iconUrl": "https://www.google.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "bing": {
+            "name": "Bing",
+            "url": "https://www.bing.com/search?q={searchTerms}",
+            "suggestUrl": "https://api.bing.com/osjson.aspx?query={searchTerms}",
+            "iconUrl": "https://www.bing.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "duckduckgo": {
+            "name": "DuckDuckGo",
+            "url": "https://duckduckgo.com/?q={searchTerms}",
+            "suggestUrl": "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list",
+            "iconUrl": "https://duckduckgo.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "yandex": {
+            "name": "Yandex",
+            "url": "https://yandex.ru/search/?text={searchTerms}",
+            "suggestUrl": "https://suggest.yandex.ru/suggest-ff.cgi?part={searchTerms}",
+            "iconUrl": "https://yandex.ru/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "yahoo": {
+            "name": "Yahoo",
+            "url": "https://search.yahoo.com/search?p={searchTerms}",
+            "suggestUrl": "https://search.yahoo.com/sugg/ff?output=fxjson&command={searchTerms}",
+            "iconUrl": "https://www.yahoo.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "ecosia": {
+            "name": "Ecosia",
+            "url": "https://www.ecosia.org/search?q={searchTerms}",
+            "suggestUrl": "https://ac.ecosia.org/?q={searchTerms}",
+            "iconUrl": "https://www.ecosia.org/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "startpage": {
+            "name": "Startpage",
+            "url": "https://www.startpage.com/do/search?q={searchTerms}",
+            "iconUrl": "https://www.startpage.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "qwant": {
+            "name": "Qwant",
+            "url": "https://www.qwant.com/?q={searchTerms}",
+            "suggestUrl": "https://api.qwant.com/api/suggest/?q={searchTerms}",
+            "iconUrl": "https://www.qwant.com/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "wikipedia": {
+            "name": "Wikipedia",
+            "url": "https://wikipedia.org/wiki/Special:Search?search={searchTerms}",
+            "suggestUrl": "https://wikipedia.org/w/api.php?action=opensearch&search={searchTerms}",
+            "iconUrl": "https://wikipedia.org/favicon.ico",
+            "encoding": "UTF-8"
+        },
+        "github": {
+            "name": "GitHub",
+            "url": "https://github.com/search?q={searchTerms}",
+            "suggestUrl": "https://api.github.com/search/repositories?q={searchTerms}",
+            "iconUrl": "https://github.com/favicon.ico",
+            "encoding": "UTF-8"
+        }
+    },
+    "keywords": {
+        "g": "google",
+        "b": "bing",
+        "ddg": "duckduckgo",
+        "ya": "yandex",
+        "y": "yahoo",
+        "e": "ecosia",
+        "sp": "startpage",
+        "q": "qwant",
+        "w": "wikipedia",
+        "gh": "github"
+    }
+} 

@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Brouser
+Comment=Modern Web Browser
+Exec=brouser %U
+Icon=brouser
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
+Keywords=Internet;WWW;Browser;Web;Explorer
+StartupNotify=true
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=brouser --new-window
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=brouser --private-window 

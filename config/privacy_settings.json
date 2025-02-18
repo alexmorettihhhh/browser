@@ -1,0 +1,19 @@
+{
+    "cookiePolicy": "accept",
+    "doNotTrack": true,
+    "trackingProtection": true,
+    "httpsOnly": true,
+    "javascriptEnabled": true,
+    "webRTCPolicy": "default",
+    "cookieExceptions": {},
+    "trackingExceptions": [],
+    "permissions": {},
+    "storageQuotas": {},
+    "proxyEnabled": false,
+    "proxyHost": "",
+    "proxyPort": 0,
+    "proxyUsername": "",
+    "proxyPassword": "",
+    "proxyBypassList": [],
+    "certificateExceptions": []
+} 

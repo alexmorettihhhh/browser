@@ -1,0 +1,21 @@
+{
+    "totalBlocked": 0,
+    "domainStats": {},
+    "ruleStats": {},
+    "history": [],
+    "lastReset": null,
+    "periodStats": {
+        "daily": {},
+        "weekly": {},
+        "monthly": {}
+    },
+    "resourceTypes": {
+        "script": 0,
+        "image": 0,
+        "stylesheet": 0,
+        "object": 0,
+        "xmlhttprequest": 0,
+        "subdocument": 0,
+        "other": 0
+    }
+} 

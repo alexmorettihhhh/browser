@@ -1,0 +1,33 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>resources/icons/brouser.ico</file>
+        <file>resources/icons/brouser.png</file>
+        <file>resources/icons/back.png</file>
+        <file>resources/icons/forward.png</file>
+        <file>resources/icons/reload.png</file>
+        <file>resources/icons/stop.png</file>
+        <file>resources/icons/home.png</file>
+        <file>resources/icons/bookmark.png</file>
+        <file>resources/icons/bookmark_add.png</file>
+        <file>resources/icons/bookmark_remove.png</file>
+        <file>resources/icons/history.png</file>
+        <file>resources/icons/downloads.png</file>
+        <file>resources/icons/settings.png</file>
+        <file>resources/icons/extensions.png</file>
+        <file>resources/icons/sync.png</file>
+        <file>resources/icons/adblock.png</file>
+        <file>resources/icons/new_tab.png</file>
+        <file>resources/icons/close_tab.png</file>
+        <file>resources/icons/private.png</file>
+        <file>resources/icons/search.png</file>
+        <file>resources/icons/menu.png</file>
+        <file>resources/styles/dark.qss</file>
+        <file>resources/styles/light.qss</file>
+        <file>resources/html/newtab.html</file>
+        <file>resources/html/error.html</file>
+        <file>resources/config/default_settings.json</file>
+        <file>resources/config/search_engines.json</file>
+        <file>resources/adblock/rules.txt</file>
+    </qresource>
+</RCC> 
